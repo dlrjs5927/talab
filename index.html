@@ -14,9 +14,37 @@ main{width:min(100% - 36px,720px);margin:0 auto}.intro{text-align:center;padding
 .step{padding:24px 0 12px;scroll-margin-top:24px}.step-heading{display:flex;align-items:center;gap:11px}.badge{flex-shrink:0;border-radius:5px;background:var(--yellow);color:#16234d;font-weight:900;font-size:12px;padding:3px 9px}.step h2{font-size:22px;margin:0;line-height:1.5;letter-spacing:-.6px}.step-desc{color:var(--muted);font-size:13px;margin:9px 0 20px}.card{padding:24px;margin-bottom:16px;border:1px solid var(--line);border-radius:12px;background:var(--card)}.card h3{margin:0 0 10px;font-size:17px;line-height:1.55}.card h3::before{content:'•';color:var(--yellow);margin-right:9px}.card p,.card li{font-size:14px;color:var(--muted)}.card p{margin:9px 0}.card strong{color:white}.card .yellow{color:var(--yellow)}.card ul,.card ol{padding-left:22px;margin:12px 0}.card li+li{margin-top:7px}.btn{display:flex;justify-content:center;align-items:center;min-height:52px;padding:12px 16px;border-radius:8px;border:1px solid transparent;background:var(--yellow);color:#101c43;font-weight:800;font-size:15px;text-align:center;text-decoration:none;margin-top:17px;cursor:pointer}.btn:hover{filter:brightness(1.06)}.btn-outline{background:transparent;border-color:var(--line);color:white}.video{position:relative;aspect-ratio:16/9;border-radius:10px;overflow:hidden;background:#09132e;margin-top:15px}.video iframe{width:100%;height:100%;border:0;display:block}.video-empty{height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:9px;color:var(--muted);text-align:center;padding:20px;font-size:13px}.play{display:grid;place-items:center;background:var(--yellow);color:#12204a;border-radius:50%;width:48px;height:48px;font-size:20px;padding-left:3px}.tip{padding:12px 15px;background:#112153;border-left:3px solid var(--yellow);border-radius:5px;margin-top:15px;color:var(--muted);font-size:13px}.checklist{list-style:none;padding:0!important}.checklist li::before{content:'✓';color:var(--yellow);font-weight:900;margin-right:10px}details{border-top:1px solid var(--line);padding:15px 0}details:first-of-type{border-top:0}summary{font-weight:700;font-size:14px;cursor:pointer}details p{margin-bottom:0!important}.closing{text-align:center;padding:35px 0 15px}.closing h2{font-size:23px;margin:0}.closing p{color:var(--muted);font-size:14px}footer{text-align:center;color:#8292bc;padding:30px 20px 45px;font-size:12px}.top{position:fixed;bottom:20px;right:18px;width:42px;height:42px;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;background:#1e3071ee;color:white;text-decoration:none;box-shadow:0 4px 16px #0003}
 @media(max-width:480px){.hero{padding-top:35px}.cover{max-width:310px}.cover img{height:235px}.cover h2{font-size:26px}.intro{padding-top:42px}.intro h2{font-size:22px}.step h2{font-size:19px}.card{padding:20px}.card p,.card li{font-size:14px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* 상단 판매 종료 카운트다운 */
+.sale-countdown{padding:24px 18px 22px;text-align:center;background:#0a1432;border-bottom:1px solid var(--line)}
+.sale-countdown__inner{max-width:520px;margin:0 auto}
+.sale-countdown__title{margin:0 0 13px;color:var(--yellow);font-size:16px;font-weight:800;letter-spacing:-.3px}
+.sale-countdown__clock{display:flex;justify-content:center;gap:10px}
+.sale-countdown__unit{display:flex;flex-direction:column;align-items:center;justify-content:center;width:78px;min-height:82px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(160deg,#203477,#142452)}
+.sale-countdown__number{font-size:32px;font-weight:900;line-height:1.2;color:#fff;font-variant-numeric:tabular-nums;letter-spacing:1px}
+.sale-countdown__label{margin-top:5px;font-size:11px;color:var(--muted)}
+.sale-countdown__deadline{margin:12px 0 0;font-size:12px;color:var(--muted)}
+.sale-countdown__ended{margin:0;font-size:21px;font-weight:800;color:var(--yellow)}
+.sale-countdown [hidden]{display:none!important}
+@media(max-width:480px){.sale-countdown{padding:20px 16px 18px}.sale-countdown__clock{gap:8px}.sale-countdown__unit{width:68px;min-height:74px}.sale-countdown__number{font-size:29px}.sale-countdown__deadline{font-size:11px}}
 </style>
 </head>
 <body id="top">
+<section class="sale-countdown" aria-label="판매 종료 안내">
+  <div class="sale-countdown__inner">
+    <h2 class="sale-countdown__title" id="sale-countdown-title">판매 종료까지</h2>
+    <div class="sale-countdown__clock" id="sale-countdown-clock" role="timer" aria-labelledby="sale-countdown-title" aria-live="off">
+      <div class="sale-countdown__unit"><span class="sale-countdown__number" id="sale-days">--</span><span class="sale-countdown__label">일</span></div>
+      <div class="sale-countdown__unit"><span class="sale-countdown__number" id="sale-hours">--</span><span class="sale-countdown__label">시간</span></div>
+      <div class="sale-countdown__unit"><span class="sale-countdown__number" id="sale-minutes">--</span><span class="sale-countdown__label">분</span></div>
+      <div class="sale-countdown__unit"><span class="sale-countdown__number" id="sale-seconds">--</span><span class="sale-countdown__label">초</span></div>
+    </div>
+    <p class="sale-countdown__ended" id="sale-countdown-ended" role="status" aria-live="polite" hidden>판매가 종료되었습니다.</p>
+    <p class="sale-countdown__deadline">2026년 10월 31일 밤 12시 종료 · 한국 시간 기준</p>
+    <noscript><p class="sale-countdown__deadline">실시간 카운트다운을 보려면 자바스크립트를 켜 주세요.</p></noscript>
+  </div>
+</section>
+
 <header class="hero">
   <!-- 아래 제목과 설명은 자유롭게 수정하세요. -->
   <h1>트레이더 존디<br>거래소 가입 가이드</h1>
@@ -147,6 +175,39 @@ if(vid){
   frame.allowFullscreen=true;frame.referrerPolicy='strict-origin-when-cross-origin';
   document.getElementById('video-slot').replaceChildren(frame);
 }
+</script>
+
+<script>
+/* 2026년 10월 31일이 끝나는 자정 = 11월 1일 00:00, 한국 시간.
+   종료 날짜를 바꾸려면 아래 시각과 배너의 날짜 문구를 함께 수정하세요. */
+(() => {
+  const saleEndsAt = new Date('2026-11-01T00:00:00+09:00').getTime();
+  const clock = document.getElementById('sale-countdown-clock');
+  const title = document.getElementById('sale-countdown-title');
+  const ended = document.getElementById('sale-countdown-ended');
+  const parts = ['days', 'hours', 'minutes', 'seconds'].map(part => document.getElementById('sale-' + part));
+  let intervalId;
+  function updateSaleCountdown() {
+    // 경과한 횟수 대신 현재 시각으로 계산하여 새로고침과 비활성 탭에서도 정확히 표시합니다.
+    const remaining = Math.max(0, Math.ceil((saleEndsAt - Date.now()) / 1000));
+    const values = [Math.floor(remaining / 86400), Math.floor(remaining / 3600) % 24, Math.floor(remaining / 60) % 60, remaining % 60];
+    parts.forEach((part, index) => { part.textContent = String(values[index]).padStart(2, '0'); });
+    const isEnded = remaining === 0;
+    clock.hidden = isEnded;
+    title.hidden = isEnded;
+    ended.hidden = !isEnded;
+    if (isEnded && intervalId !== undefined) {
+      clearInterval(intervalId);
+      intervalId = undefined;
+    }
+    return isEnded;
+  }
+  if (!updateSaleCountdown()) intervalId = setInterval(updateSaleCountdown, 1000);
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) updateSaleCountdown();
+  });
+  window.addEventListener('pageshow', updateSaleCountdown);
+})();
 </script>
 </body>
 </html>
